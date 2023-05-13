@@ -6,6 +6,7 @@ abstract public class Plant extends Organism {
         initiative = 0; //base initiative
         strength = 0; //base strength
     }
+    abstract public Organism createChild(int xPosition, int yPosition);
     public void action() {
         grow();
     }

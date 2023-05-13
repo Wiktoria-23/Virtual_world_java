@@ -1,6 +1,7 @@
+import javax.swing.*;
+
 public class Controller {
-    private Screen screen;
-    private boolean programActive = true;
+    private Screen mainWindow;
     private World world = new World();
     public Controller() {
         getBoardSize();
@@ -9,8 +10,12 @@ public class Controller {
         BoardSizeChoice choiceWindow = new BoardSizeChoice(world);
         world.initWorld();
     }
+    public void newRound() {
+        getWorld().performRound();
+        mainWindow.updateMainFrame();
+    }
     public void showMainWindow() {
-        Screen mainWindow = new Screen(world.getBoardSizeX(), world.getBoardSizeY(), this);
+        mainWindow = new Screen(world.getBoardSizeX(), world.getBoardSizeY(), this);
         mainWindow.show();
     }
     public World getWorld() {

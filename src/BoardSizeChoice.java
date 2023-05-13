@@ -19,6 +19,7 @@ public class BoardSizeChoice implements ActionListener {
     }
     public void show() {
         mainWindow = new JDialog(mainWindow, Dialog.ModalityType.APPLICATION_MODAL);
+        mainWindow.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         title = new JLabel("Podaj rozmiar planszy", SwingConstants.CENTER);
         title.setBounds((windowWidth - 200) / 2, menuStartY, 200, 20);
         mainWindow.add(title);

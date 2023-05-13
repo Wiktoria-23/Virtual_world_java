@@ -10,32 +10,43 @@ public class Screen {
     private final int windowWidth = 800;
     private final int windowHeight = 600;
     private JPanel[][] organismsImages;
+    private JPanel board;
     private Coordinates boardSizes = new Coordinates(0,0);
-    private JFrame frame = new JFrame("Wirtualny świat");
+    private JFrame mainFrame = new JFrame("Wirtualny świat");
     public Screen(int boardSizeX, int boardSizeY, Controller newController) {
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         controller = newController;
+        mainFrame.addKeyListener(new KeyboardListener(controller));
+        mainFrame.setFocusable(true);
+        mainFrame.setFocusTraversalKeysEnabled(false);
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JButton turnButton = new JButton("Nowa tura");
-        JPanel board = new JPanel(new GridLayout(boardSizeY, boardSizeX));
+        board = new JPanel(new GridLayout(boardSizeY, boardSizeX));
         turnButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                controller.getWorld().performRound();
-                updateBoard(board, boardSizeX, boardSizeY);
-                board.revalidate();
-                board.repaint();
+                controller.newRound();
+                updateMainFrame();
             }
         });
         buttonPanel.add(turnButton);
         organismsImages = new JPanel[boardSizeY][boardSizeX];
         boardSizes.setX(boardSizeX);
         boardSizes.setY(boardSizeY);
-        frame.setSize(windowWidth, windowHeight);
+        mainFrame.setSize(windowWidth, windowHeight);
         updateBoard(board, boardSizeX, boardSizeY);
         mainPanel.add(board, BorderLayout.CENTER);
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
-        frame.add(mainPanel);
+        mainFrame.add(mainPanel);
+    }
+    public void updateMainFrame() {
+        updateBoard(board, boardSizes.getX(), boardSizes.getY());
+        board.revalidate();
+        board.repaint();
+        getMainFrame().requestFocus();
+    }
+    public JFrame getMainFrame() {
+        return mainFrame;
     }
     public void updateBoard(JPanel board, int boardSizeX, int boardSizeY) {
         board.removeAll();
@@ -57,6 +68,6 @@ public class Screen {
         }
     }
     public void show() {
-        frame.setVisible(true);
+        mainFrame.setVisible(true);
     }
 }

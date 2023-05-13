@@ -20,12 +20,12 @@ public class Turtle extends Animal {
         return newTurtle;
     }
     public void collision(Organism collidingOrganism) {
-        /*if (image == collidingOrganism->getImage()) {
+        if (color == collidingOrganism.getColor()) {
             tryToBreed(collidingOrganism);
             return;
         }
         if (collidingOrganism.getStrength() < 5 && currentWorld.checkIfAnimal(collidingOrganism.getX(), collidingOrganism.getY())) {
-            Animal collidingAnimal = dynamic_cast<Animal>(collidingOrganism);
+            Animal collidingAnimal = (Animal)collidingOrganism;
             if (collidingAnimal.getMoveDirection() == direction.UP) {
                 collidingAnimal.setMoveDirection(direction.DOWN);
             }
@@ -44,6 +44,6 @@ public class Turtle extends Animal {
             if (collidingOrganism.checkIfAlive() && collidingOrganism.getStrength() != strength) {
                 collidingOrganism.collision(this);
             }
-        }*/
+        }
     }
 }
