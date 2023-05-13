@@ -1,12 +1,14 @@
+import java.awt.Color;
 public class Dandelion extends Plant {
-    Dandelion(int xPosition, int yPosition, World newWorld) {
+    public Dandelion(int xPosition, int yPosition, World newWorld) {
         super(xPosition, yPosition, newWorld);
+        color = Color.yellow;
     }
-    Organism createChild(int xPosition, int yPosition) {
+    public Organism createChild(int xPosition, int yPosition) {
         Organism newDandelion = new Dandelion(xPosition, yPosition, currentWorld);
         return newDandelion;
     }
-    void action() {
+    public void action() {
         for (int i = 0; i < 3; i++) {
             grow();
         }

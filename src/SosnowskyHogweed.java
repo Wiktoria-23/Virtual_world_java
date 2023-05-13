@@ -1,13 +1,16 @@
+import java.awt.*;
+
 public class SosnowskyHogweed extends Plant {
-    SosnowskyHogweed(int xPosition, int yPosition, World newWorld) {
+    public SosnowskyHogweed(int xPosition, int yPosition, World newWorld) {
         super(xPosition, yPosition, newWorld);
+        color = Color.black;
         strength = 10; //base SosnowskyHogweed strength
     }
-    Organism createChild(int xPosition, int yPosition) {
+    public Organism createChild(int xPosition, int yPosition) {
         Organism newSosnowskyHogweed = new SosnowskyHogweed(xPosition, yPosition, currentWorld);
         return newSosnowskyHogweed;
     }
-    void action() {
+    public void action() {
         if (currentWorld.checkFieldXY(x - 1, y) && currentWorld.checkIfAnimal(x - 1, y)) {
             currentWorld.getOrganismFromXY(x - 1, y).setDeadState();
         }
@@ -22,7 +25,7 @@ public class SosnowskyHogweed extends Plant {
         }
         grow();
     }
-    void collision(Organism collidingOrganism) {
+    public void collision(Organism collidingOrganism) {
         setDeadState();
         collidingOrganism.setDeadState();
     }

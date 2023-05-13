@@ -1,13 +1,16 @@
+import java.awt.*;
+
 public class Nightshade extends Plant {
-    Nightshade(int xPosition, int yPosition, World newWorld) {
+    public Nightshade(int xPosition, int yPosition, World newWorld) {
         super(xPosition, yPosition, newWorld);
+        color = Color.magenta;
         strength = 99; //base Nightshade strength
     }
-    Organism createChild(int xPosition, int yPosition) {
+    public Organism createChild(int xPosition, int yPosition) {
         Organism newNightshade = new Nightshade(xPosition, yPosition, currentWorld);
         return newNightshade;
     }
-    void collision(Organism collidingOrganism) {
+    public void collision(Organism collidingOrganism) {
         setDeadState();
         collidingOrganism.setDeadState();
     }

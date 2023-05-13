@@ -3,12 +3,8 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-        boolean active = true;
-        World newWorld = new World();
-        BoardSizeChoice choiceWindow = new BoardSizeChoice(newWorld);
-        newWorld.initWorld();
-        Screen mainWindow = new Screen(newWorld.getBoardSizeX(), newWorld.getBoardSizeY());
-        mainWindow.show();
+        Controller controller = new Controller();
+        controller.showMainWindow();
         /*
         while (active) {
             character = _getch();

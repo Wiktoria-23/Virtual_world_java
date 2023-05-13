@@ -1,13 +1,16 @@
+import java.awt.*;
+
 public class Guarana extends Plant {
     final int strengthIncrease = 3; //Guarana increases strength of an animal
-    Guarana(int xPosition, int yPosition, World newWorld) {
+    public Guarana(int xPosition, int yPosition, World newWorld) {
         super(xPosition, yPosition, newWorld);
+        color = Color.gray;
     }
-    Organism createChild(int xPosition, int yPosition) {
+    public Organism createChild(int xPosition, int yPosition) {
         Organism newGuarana = new Guarana(xPosition, yPosition, currentWorld);
         return newGuarana;
     }
-    void collision(Organism collidingOrganism) {
+    public void collision(Organism collidingOrganism) {
         if (currentWorld.checkIfAnimal(collidingOrganism.getX(), collidingOrganism.getY())) {
             collidingOrganism.increaseStrength(strengthIncrease);
             setDeadState();

@@ -1,21 +1,22 @@
+import java.awt.*;
 import java.util.Random;
-
 public class Antelope extends Animal {
     private final int baseAntelopeSpeed = 2;
-    Antelope(int xPosition, int yPosition, World newWorld) {
+    public Antelope(int xPosition, int yPosition, World newWorld) {
         super(xPosition, yPosition, newWorld);
+        color = Color.orange;
         speed = baseAntelopeSpeed; //base antelope speed
         strength = 4; //base antelope strength
         initiative = 4; //base antelope initiative
     }
-    Organism createChild(int xPosition, int yPosition) {
+    public Organism createChild(int xPosition, int yPosition) {
         Organism newAntelope = new Antelope(xPosition, yPosition, currentWorld);
         return newAntelope;
     }
-    void setSpeed(int newSpeed) {
+    public void setSpeed(int newSpeed) {
         speed = newSpeed;
     }
-    void collision(Organism collidingOrganism) {
+    public void collision(Organism collidingOrganism) {
         if (collidingOrganism.checkIfAlive() && !(collidingOrganism instanceof Antelope)) {
             Random rand = new Random();
             int survive = rand.nextInt(2);

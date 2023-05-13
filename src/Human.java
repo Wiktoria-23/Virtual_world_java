@@ -1,15 +1,18 @@
+import java.awt.*;
+
 public class Human extends Animal {
     private boolean superpowerActive;
     private int roundCounter;
-    Human(int xPosition, int yPosition, World newWorld) {
+    public Human(int xPosition, int yPosition, World newWorld) {
         super(xPosition, yPosition, newWorld);
+        color = Color.pink;
         roundCounter = 0;
         strength = 5; //base Human strength
         initiative = 4; //base Human initiative
         superpowerActive = false;
         moveDirection = direction.NONE;
     }
-    void action() {
+    public void action() {
         if (superpowerActive) {
             if (roundCounter == 0) {
                 superpowerActive = false;
@@ -42,7 +45,7 @@ public class Human extends Animal {
     int getRoundCounter() {
         return roundCounter;
     }
-    void collision(Organism collidingOrganism) {
+    public void collision(Organism collidingOrganism) {
         if (superpowerActive && collidingOrganism.getStrength() > strength) {
             direction moveDirection = randMoveDirection();
             setMoveDirection(moveDirection);
@@ -53,25 +56,25 @@ public class Human extends Animal {
             baseMovement();
         }
     }
-    void setDeadState() {
+    public void setDeadState() {
         if (superpowerActive == false) {
             alive = false;
         }
     }
-    boolean superpowerState() {
+    public boolean superpowerState() {
         return superpowerActive;
     }
-    void activateSuperpower() {
+    public void activateSuperpower() {
         roundCounter = 5;
         superpowerActive = true;
     }
-    void setRoundCounter(int newRoundCounter) {
+    public void setRoundCounter(int newRoundCounter) {
         roundCounter = newRoundCounter;
     }
-    void setSuperpowerState(boolean newSuperpowerState) {
+    public void setSuperpowerState(boolean newSuperpowerState) {
         superpowerActive = newSuperpowerState;
     }
-    Organism createChild(int xPosition, int yPosition) {
+    public Organism createChild(int xPosition, int yPosition) {
         return null;
     }
 }

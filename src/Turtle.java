@@ -1,23 +1,25 @@
+import java.awt.*;
 import java.util.Random;
 public class Turtle extends Animal {
     private final int chanceToMove = 4;
-    Turtle(int xPosition, int yPosition, World newWorld) {
+    public Turtle(int xPosition, int yPosition, World newWorld) {
         super(xPosition, yPosition, newWorld);
+        color = Color.blue;
         strength = 2; //base Turtle strength
         initiative = 1; //base Turtle initiative
     }
-    void action() {
+    public void action() {
         Random rand = new Random();
         int move = rand.nextInt(chanceToMove);
         if (move == 0) {
             super.action();
         }
     }
-    Organism createChild(int xPosition, int yPosition) {
+    public Organism createChild(int xPosition, int yPosition) {
         Organism newTurtle = new Turtle(xPosition, yPosition, currentWorld);
         return newTurtle;
     }
-    void collision(Organism collidingOrganism) {
+    public void collision(Organism collidingOrganism) {
         /*if (image == collidingOrganism->getImage()) {
             tryToBreed(collidingOrganism);
             return;

@@ -1,21 +1,21 @@
 import java.util.Random;
 abstract public class Plant extends Organism {
     final int growChance = 40;
-    Plant(int xPosition, int yPosition, World newWorld) {
+    public Plant(int xPosition, int yPosition, World newWorld) {
         super(xPosition, yPosition, newWorld);
         initiative = 0; //base initiative
         strength = 0; //base strength
     }
-    void action() {
+    public void action() {
         grow();
     }
-    boolean checkPossibilityToGrow() {
+    public boolean checkPossibilityToGrow() {
         if (!currentWorld.checkFieldXY(x - 1, y) || !currentWorld.checkFieldXY(x + 1, y) || !currentWorld.checkFieldXY(x, y - 1) || !currentWorld.checkFieldXY(x, y + 1)) {
             return true;
         }
         return false;
     }
-    void grow() {
+    public void grow() {
         if (checkPossibilityToGrow()) {
             Random rand = new Random();
             int chanceToGrow = rand.nextInt(growChance);

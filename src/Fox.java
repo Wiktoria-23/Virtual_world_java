@@ -1,14 +1,17 @@
+import java.awt.*;
+
 public class Fox extends Animal {
-    Fox(int xPosition, int yPosition, World newWorld) {
+    public Fox(int xPosition, int yPosition, World newWorld) {
         super(xPosition, yPosition, newWorld);
+        color = Color.red;
         strength = 3; //base fox strength
         initiative = 7; //base fox initiative
     }
-    Organism createChild(int xPosition, int yPosition) {
+    public Organism createChild(int xPosition, int yPosition) {
         Organism newFox = new Fox(xPosition, yPosition, currentWorld);
         return newFox;
     }
-    boolean checkField(direction moveDirection) {
+    public boolean checkField(direction moveDirection) {
         if (moveDirection == direction.LEFT) {
             if (currentWorld.checkFieldXY(x - speed, y)) {
                 if (currentWorld.getOrganismFromXY(x - speed, y) instanceof Fox) {
@@ -55,7 +58,7 @@ public class Fox extends Animal {
         }
         return false;
     }
-    boolean checkIfAnyMovePossible() {
+    public boolean checkIfAnyMovePossible() {
         if (x < 0 || x >= currentWorld.getBoardSizeX() || y < 0 || y >= currentWorld.getBoardSizeY()) {
             return false;
         }
@@ -67,7 +70,7 @@ public class Fox extends Animal {
         }
         return false;
     }
-    void action() {
+    public void action() {
         if (checkIfAnyMovePossible()) {
             direction moveDirection;
             while (true) {

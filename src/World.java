@@ -8,7 +8,7 @@ public class World {
     private int boardSizeY;
     /*ArrayList<String> allEventsInfo;*/
     ArrayList<Organism> allOrganisms;
-    World() {
+    public World() {
         roundCounter = 0;
     }
     public void initWorld() {
@@ -53,12 +53,12 @@ public class World {
         /*String info = new String("Stworzono wszystkie organizmy");*/
        /* allEventsInfo.add(info);*/
     }
-    int countOrganismsAmount() {
+    public int countOrganismsAmount() {
         float field = boardSizeX * boardSizeY;
         int maxOccupied = (int)Math.ceil(field / 100 * 2); // setting maxOccupied field by organism type to 2% of whole field
         return maxOccupied + 1;
     }
-    void performRound() {
+    public void performRound() {
         for (int i = 0; i < allOrganisms.size(); i++) {
             if (allOrganisms.get(i).checkIfAlive()) {
                 allOrganisms.get(i).action();
@@ -80,7 +80,7 @@ public class World {
             }
         }
     }
-    boolean checkFieldXY(int x, int y) {
+    public boolean checkFieldXY(int x, int y) {
         int organismsAmount = allOrganisms.size();
         for (int i = 0; i < organismsAmount; i++) {
             if (allOrganisms.get(i).getX() == x && allOrganisms.get(i).getY() == y) {
@@ -89,19 +89,19 @@ public class World {
         }
         return false;
     }
-    int getBoardSizeX() {
+    public int getBoardSizeX() {
         return boardSizeX;
     }
-    int getBoardSizeY() {
+    public int getBoardSizeY() {
         return boardSizeY;
     }
-    void setBoardSizeX(int newX) {
+    public void setBoardSizeX(int newX) {
         boardSizeX = newX;
     }
-    void setBoardSizeY(int newY) {
+    public void setBoardSizeY(int newY) {
         boardSizeY = newY;
     }
-    Organism getOrganismFromXY(int x, int y) {
+    public Organism getOrganismFromXY(int x, int y) {
         for (int i = 0; i < allOrganisms.size(); i++) {
             if (allOrganisms.get(i).getX() == x && allOrganisms.get(i).getY() == y) {
                 return allOrganisms.get(i);
@@ -109,7 +109,7 @@ public class World {
         }
         return null;
     }
-    boolean checkIfAnimal(int xPosition, int yPosition) {
+    public boolean checkIfAnimal(int xPosition, int yPosition) {
         Organism neighbourOrganism;
         if (xPosition >= 0 && xPosition < boardSizeX && yPosition >= 0 && yPosition < boardSizeY) {
             if (checkFieldXY(xPosition, yPosition)) {
@@ -124,13 +124,13 @@ public class World {
         }
         return false;
     }
-    int getRoundCounter() {
+    public int getRoundCounter() {
         return roundCounter;
     }
-    void incrementRoundCounter() {
+    public void incrementRoundCounter() {
         roundCounter += 1;
     }
-    Human getHuman() {
+    public Human getHuman() {
         for (int i = 0; i < allOrganisms.size(); i++) {
             if (allOrganisms.get(i) instanceof Human) {
                 return (Human)allOrganisms.get(i);
@@ -138,10 +138,10 @@ public class World {
         }
         return null;
     }
-    void addOrganism(Organism newOrganism) {
+    public void addOrganism(Organism newOrganism) {
         allOrganisms.add(newOrganism);
     }
-    void sortOrganisms() {
+    public void sortOrganisms() {
         int i = 0;
         for (int j = i; j < allOrganisms.size(); j++) {
             int highestInitiative = 0;

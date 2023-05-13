@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.awt.Color;
 abstract public class Organism {
     enum direction {
         LEFT,
@@ -7,6 +8,7 @@ abstract public class Organism {
         DOWN,
         NONE
     }
+    protected Color color;
     protected int strength;
     protected int initiative;
     protected int x;
@@ -22,16 +24,14 @@ abstract public class Organism {
         age = 0;
         alive = true;
     }
-    direction randMoveDirection() {
+    public direction randMoveDirection() {
         Random rand = new Random();
         int number = (rand.nextInt(direction.values().length));
         direction moveDirection = direction.values()[number];
         return moveDirection;
     }
-    Organism createChild(int xPosition, int yPosition) {
-        return null;
-    }
-    Organism getCollision(direction moveDirection) {
+    public abstract Organism createChild(int xPosition, int yPosition);
+    public Organism getCollision(direction moveDirection) {
         Organism collidingOrganism = null;
         if (moveDirection == moveDirection.UP) {
             if (currentWorld.checkFieldXY(x, y - 1)) {
@@ -58,57 +58,58 @@ abstract public class Organism {
         }
         return null;
     }
-    void action() {
-
+    public Color getColor() {
+        return color;
     }
-    void setDeadState() {
+    public abstract void action();
+    public void setDeadState() {
         alive = false;
     }
-    boolean checkIfAlive() {
+    public boolean checkIfAlive() {
         return alive;
     }
-    void increaseStrength(int amount) {
+    public void increaseStrength(int amount) {
         strength += amount;
     }
-    void collision(Organism collidingOrganism) {
+    public void collision(Organism collidingOrganism) {
         baseFight(collidingOrganism);
         if (collidingOrganism.checkIfAlive() && alive) {
             collidingOrganism.collision(this);
         }
     }
-    void baseFight(Organism collidingOrganism) {
+    public void baseFight(Organism collidingOrganism) {
         if (collidingOrganism.strength > strength) {
             setDeadState();
         }
     }
-    void setStrength(int newStrength) {
+    public void setStrength(int newStrength) {
         strength = newStrength;
     }
-    void setInitiative(int newInitiative) {
+    public void setInitiative(int newInitiative) {
         initiative = newInitiative;
     }
-    void setAge(int newAge) {
+    public void setAge(int newAge) {
         age = newAge;
     }
-    void setAliveState(boolean newAlive) {
+    public void setAliveState(boolean newAlive) {
         alive = newAlive;
     }
-    int getStrength() {
+    public int getStrength() {
         return strength;
     }
-    int getInitiative() {
+    public int getInitiative() {
         return initiative;
     }
-    int getX() {
+    public int getX() {
         return x;
     }
-    int getY() {
+    public int getY() {
         return y;
     }
-    int getAge() {
+    public int getAge() {
         return age;
     }
-    void incrementAgeCounter() {
+    public void incrementAgeCounter() {
         age += 1;
     }
 }
