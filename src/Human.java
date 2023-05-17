@@ -6,6 +6,8 @@ public class Human extends Animal {
     public Human(int xPosition, int yPosition, World newWorld) {
         super(xPosition, yPosition, newWorld);
         color = Color.pink;
+        name = "Człowiek";
+        type = organismType.HUMAN;
         roundCounter = 0;
         strength = 5; //base Human strength
         initiative = 4; //base Human initiative
@@ -17,10 +19,14 @@ public class Human extends Animal {
             if (roundCounter == 0) {
                 superpowerActive = false;
                 roundCounter = 5;
+                currentWorld.addEventInfo("Super umiejętność człowieka nie aktywna");
+            }
+            else {
+                currentWorld.addEventInfo("Super umiejętność człowieka aktywna");
             }
         }
         else {
-
+            currentWorld.addEventInfo("Super umiejętność człowieka nie aktywna");
         }
         if (moveDirection != direction.NONE && checkMove(moveDirection)) {
             Organism collidingOrganism = getCollision(moveDirection);
@@ -53,11 +59,10 @@ public class Human extends Animal {
         }
         else {
             super.collision(collidingOrganism);
-            baseMovement();
         }
     }
-    public void setDeadState() {
-        if (superpowerActive == false) {
+    public void setDeadState(Organism collidingOrganism) {
+        if (!superpowerActive) {
             alive = false;
         }
     }

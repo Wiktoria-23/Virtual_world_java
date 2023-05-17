@@ -4,12 +4,13 @@ public class World {
     private int roundCounter;
     private int boardSizeX;
     private int boardSizeY;
-    /*ArrayList<String> allEventsInfo;*/
+    ArrayList<String> allEventsInfo;
     ArrayList<Organism> allOrganisms;
     public World() {
         roundCounter = 0;
     }
     public void initWorld() {
+        allEventsInfo = new ArrayList<String>();
         allOrganisms = new ArrayList<Organism>();
         int amount = countOrganismsAmount();
         for (int i = 0; i < amount; i++) {
@@ -48,19 +49,24 @@ public class World {
         Human newHuman = new Human(emptyField.getX(), emptyField.getY(), this);
         allOrganisms.add(newHuman);
         sortOrganisms();
-        /*String info = new String("Stworzono wszystkie organizmy");*/
-       /* allEventsInfo.add(info);*/
     }
     public int countOrganismsAmount() {
         float field = boardSizeX * boardSizeY;
-        int maxOccupied = (int)Math.ceil(field / 100 * 2); // setting maxOccupied field by organism type to 2% of whole field
+        int maxOccupied = (int)Math.ceil(field / 100 * 1); // setting maxOccupied field by organism type to 1% of whole field
         return maxOccupied + 1;
+    }
+    public ArrayList<String> getAllEventsInfo() {
+        return allEventsInfo;
+    }
+    public void addEventInfo(String info) {
+        allEventsInfo.add(info);
     }
     public void performRound() {
         for (int i = 0; i < allOrganisms.size(); i++) {
             if (allOrganisms.get(i).checkIfAlive()) {
                 allOrganisms.get(i).action();
                 allOrganisms.get(i).incrementAgeCounter();
+                sortOrganisms();
             }
         }
         for (int i = allOrganisms.size() - 1; i >= 0; i--) {
@@ -72,8 +78,8 @@ public class World {
                         allOrganisms.remove(i);
                     }
                 }
-			else {
-                    allOrganisms.remove(i);
+                else {
+                        allOrganisms.remove(i);
                 }
             }
         }
@@ -163,97 +169,7 @@ public class World {
             i++;
         }
     }
-    /*void save(String filename) {
-        fstream file;
-        file.open(filename, fstream::out);
-        file << boardSizeX << endl;
-        file << boardSizeY << endl;
-        file << allOrganisms.size() << endl;
-        for (int i = 0; i < allOrganisms.size(); i++) {
-            file << allOrganisms[i]->getImage() << endl << allOrganisms[i]->checkIfAlive() << endl << allOrganisms[i]->getAge() << endl << allOrganisms[i]->getInitiative() << endl;
-            file << allOrganisms[i]->getStrength() << endl << allOrganisms[i]->getX() << endl << allOrganisms[i]->getY() << endl;
-            if (allOrganisms[i]->getImage() == HUMAN_IMAGE) {
-                Human* humanPointer = dynamic_cast<Human*>(allOrganisms[i]);
-                file << humanPointer->superpowerState() << endl << humanPointer->getRoundCounter() << endl;
-            }
-        }
-        file.close();
-    }*/
-    /*void loadFromFile(String filename) {
-        fstream file;
-        file.open(filename, fstream::in);
-        if (file.is_open()) {
-            for (int i = allOrganisms.size() - 1; i >= 0; i--) {
-                Organism* tmp = allOrganisms[i];
-                allOrganisms.erase(allOrganisms.begin() + i);
-                delete tmp;
-            }
-            int amountOfOrganisms;
-            file >> boardSizeX;
-            file >> boardSizeY;
-            file >> amountOfOrganisms;
-            char organismImage;
-            bool alive, superpowerActive;
-            int age, initiative, strength, x, y, roundCount;
-            for (int i = 0; i < amountOfOrganisms; i++) {
-                file >> organismImage >> alive >> age >> initiative >> strength >> x >> y;
-                Organism* newOrganism = nullptr;
-                if (organismImage == ANTELOPE_IMAGE) {
-                    newOrganism = new Antelope(x, y, this);
-                }
-                else if (organismImage == DANDELION_IMAGE) {
-                    newOrganism = new Dandelion(x, y, this);
-                }
-                else if (organismImage == FOX_IMAGE) {
-                    newOrganism = new Fox(x, y, this);
-                }
-                else if (organismImage == GRASS_IMAGE) {
-                    newOrganism = new Grass(x, y, this);
-                }
-                else if (organismImage == GUARANA_IMAGE) {
-                    newOrganism = new Guarana(x, y, this);
-                }
-                else if (organismImage == HUMAN_IMAGE) {
-                    newOrganism = new Human(x, y, this);
-                    file >> superpowerActive >> roundCounter;
-                }
-                else if (organismImage == NIGHTSHADE_IMAGE) {
-                    newOrganism = new Nightshade(x, y, this);
-                }
-                else if (organismImage == SHEEP_IMAGE) {
-                    newOrganism = new Sheep(x, y, this);
-                }
-                else if (organismImage == SOSNOWSKY_HOGWEED_IMAGE) {
-                    newOrganism = new SosnowskyHogweed(x, y, this);
-                }
-                else if (organismImage == TURTLE_IMAGE) {
-                    newOrganism = new Turtle(x, y, this);
-                }
-                else if (organismImage == WOLF_IMAGE) {
-                    newOrganism = new Wolf(x, y, this);
-                }
-                newOrganism->setStrength(strength);
-                newOrganism->setInitiative(initiative);
-                newOrganism->setAliveState(alive);
-                newOrganism->setAge(age);
-                if (newOrganism->getImage() == HUMAN_IMAGE) {
-                    Human* humanPointer = dynamic_cast<Human*>(newOrganism);
-                    humanPointer->setSuperpowerState(superpowerActive);
-                    humanPointer->setRoundCounter(roundCounter);
-                }
-                allOrganisms.push_back(newOrganism);
-            }
-            file.close();
-        }
-        else {
-            cout << "Plik nie istnieje!";
-            char input = EMPTY;
-            while (true) {
-                input = _getch();
-                if (input == NEW_LINE) {
-                    break;
-                }
-            }
-        }
-    }*/
+    public ArrayList<Organism> getAllOrganisms() {
+        return allOrganisms;
+    }
 }

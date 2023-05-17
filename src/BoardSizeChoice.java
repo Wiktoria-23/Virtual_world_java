@@ -8,7 +8,6 @@ public class BoardSizeChoice implements ActionListener {
     private final int menuStartY = (windowHeight - 260) / 2;
     private final int spaceInMenu = 50;
     private World currentWorld;
-    boolean choice = false;
     private JLabel title;
     private JButton button;
     private JSpinner xInput, yInput;
@@ -40,7 +39,6 @@ public class BoardSizeChoice implements ActionListener {
     public void actionPerformed(ActionEvent event) {
         currentWorld.setBoardSizeX((int)xInput.getValue());
         currentWorld.setBoardSizeY((int)yInput.getValue());
-        choice = true;
         mainWindow.setVisible(false);
         mainWindow.dispose();
     }

@@ -8,6 +8,21 @@ abstract public class Organism {
         DOWN,
         NONE
     }
+    enum organismType {
+        ANTELOPE,
+        DANDELION,
+        FOX,
+        GRASS,
+        GUARANA,
+        HUMAN,
+        NIGHTSHADE,
+        SHEEP,
+        SOSNOWSKY_HOGWEED,
+        TURTLE,
+        WOLF
+    }
+    protected organismType type;
+    protected String name;
     protected Color color;
     protected int strength;
     protected int initiative;
@@ -24,9 +39,12 @@ abstract public class Organism {
         age = 0;
         alive = true;
     }
+    public organismType getType() {
+        return type;
+    }
     public direction randMoveDirection() {
         Random rand = new Random();
-        int number = (rand.nextInt(direction.values().length));
+        int number = (rand.nextInt(direction.values().length - 1));
         direction moveDirection = direction.values()[number];
         return moveDirection;
     }
@@ -35,7 +53,7 @@ abstract public class Organism {
         Organism collidingOrganism = null;
         if (moveDirection == moveDirection.UP) {
             if (currentWorld.checkFieldXY(x, y - 1)) {
-                collidingOrganism = currentWorld.getOrganismFromXY(x, y - 1);//rozwiąż kwestię wskaźników!!!
+                collidingOrganism = currentWorld.getOrganismFromXY(x, y - 1);
             }
         }
         else if (moveDirection == moveDirection.DOWN) {
@@ -62,7 +80,9 @@ abstract public class Organism {
         return color;
     }
     public abstract void action();
-    public void setDeadState() {
+    public void setDeadState(Organism collidingOrganism) {
+        String deathInfo = new String(name + "(" + x + ", " + y + ") został zabity przez " + collidingOrganism.getName());
+        currentWorld.addEventInfo(deathInfo);
         alive = false;
     }
     public boolean checkIfAlive() {
@@ -70,6 +90,9 @@ abstract public class Organism {
     }
     public void increaseStrength(int amount) {
         strength += amount;
+    }
+    public String getName() {
+        return name;
     }
     public void collision(Organism collidingOrganism) {
         baseFight(collidingOrganism);
@@ -79,20 +102,14 @@ abstract public class Organism {
     }
     public void baseFight(Organism collidingOrganism) {
         if (collidingOrganism.strength > strength) {
-            setDeadState();
+            setDeadState(collidingOrganism);
         }
     }
     public void setStrength(int newStrength) {
         strength = newStrength;
     }
-    public void setInitiative(int newInitiative) {
-        initiative = newInitiative;
-    }
     public void setAge(int newAge) {
         age = newAge;
-    }
-    public void setAliveState(boolean newAlive) {
-        alive = newAlive;
     }
     public int getStrength() {
         return strength;

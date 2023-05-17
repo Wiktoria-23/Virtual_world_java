@@ -28,6 +28,9 @@ public class KeyboardListener implements KeyListener {
             world.getHuman().setMoveDirection(Organism.direction.RIGHT);
             controller.newRound();
         }
+        else if (e.getKeyCode() == KeyEvent.VK_X) {
+            world.getHuman().activateSuperpower();
+        }
     }
     public void keyReleased(KeyEvent e) {
 

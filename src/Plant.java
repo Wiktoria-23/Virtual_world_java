@@ -25,18 +25,22 @@ abstract public class Plant extends Organism {
                 if (growDirection == direction.UP && y - 1 >= 0) {
                     Organism newPlant = createChild(x, y - 1);
                     currentWorld.addOrganism(newPlant);
+                    currentWorld.addEventInfo(name + " (" + x + ", " + y + ") rozrósł się");
                 }
                 else if (growDirection == direction.DOWN && y + 1 < currentWorld.getBoardSizeY()) {
                     Organism newPlant = createChild(x, y + 1);
                     currentWorld.addOrganism(newPlant);
+                    currentWorld.addEventInfo(name + " (" + x + ", " + y + ") rozrósł się");
                 }
                 else if (growDirection == direction.RIGHT && x + 1 < currentWorld.getBoardSizeX()) {
                     Organism newPlant = createChild(x + 1, y);
                     currentWorld.addOrganism(newPlant);
+                    currentWorld.addEventInfo(name + " (" + x + ", " + y + ") rozrósł się");
                 }
                 else if (growDirection == direction.LEFT && x - 1 >= 0) {
                     Organism newPlant = createChild(x - 1, y);
                     currentWorld.addOrganism(newPlant);
+                    currentWorld.addEventInfo(name + " (" + x + ", " + y + ") rozrósł się");
                 }
             }
         }

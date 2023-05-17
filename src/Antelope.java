@@ -4,6 +4,8 @@ public class Antelope extends Animal {
     private final int baseAntelopeSpeed = 2;
     public Antelope(int xPosition, int yPosition, World newWorld) {
         super(xPosition, yPosition, newWorld);
+        type = organismType.ANTELOPE;
+        name = "Antylopa";
         color = Color.orange;
         speed = baseAntelopeSpeed; //base antelope speed
         strength = 4; //base antelope strength
@@ -23,6 +25,7 @@ public class Antelope extends Animal {
             if (survive == 0) {
                 if (currentWorld.checkFieldXY(x, y - 1) || currentWorld.checkFieldXY(x, y + 1) || currentWorld.checkFieldXY(x - 1, y) || currentWorld.checkFieldXY(x + 1, y)) {
                     setSpeed(this.baseAnimalSpeed);
+                    currentWorld.addEventInfo(name + " (" + x + ", " + y + ") ucieka od walki");
                     while (true) {
                         direction moveDirection = randMoveDirection();
                         if (checkMove(moveDirection)) {

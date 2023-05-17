@@ -4,6 +4,8 @@ public class Fox extends Animal {
     public Fox(int xPosition, int yPosition, World newWorld) {
         super(xPosition, yPosition, newWorld);
         color = Color.red;
+        type = organismType.FOX;
+        name = "Lis";
         strength = 3; //base fox strength
         initiative = 7; //base fox initiative
     }

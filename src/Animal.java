@@ -72,17 +72,12 @@ abstract public class Animal extends Organism {
         return moveDirection;
     }
     public void breed(int xPosition, int yPosition) {
+        currentWorld.addEventInfo(name + " (" + x + ", " + y + ") rozmnożył się");
         Organism newAnimal = createChild(xPosition, yPosition);
         currentWorld.addOrganism(newAnimal);
     }
-    public boolean checkSameType(Organism collidingOrganism) {
-        if (color == collidingOrganism.getColor()) {
-            return true;
-        }
-        return false;
-    }
     public void tryToBreed(Organism collidingOrganism) {
-        if ((currentWorld.checkFieldXY(x, y - 1) && (currentWorld.getOrganismFromXY(x, y - 1).getColor()) != color) || (currentWorld.checkFieldXY(x, y + 1) && (currentWorld.getOrganismFromXY(x, y + 1).getColor() != color)) || (currentWorld.checkFieldXY(x - 1, y) && (currentWorld.getOrganismFromXY(x - 1, y).getColor() != color)) || (currentWorld.checkFieldXY(x + 1, y) && currentWorld.getOrganismFromXY(x + 1, y).getColor() != color)) {
+        if (currentWorld.getOrganismFromXY(x, y - 1) == null || (currentWorld.getOrganismFromXY(x, y - 1).getColor()) != color || currentWorld.getOrganismFromXY(x, y + 1) == null || currentWorld.getOrganismFromXY(x, y + 1).getColor() != color || currentWorld.getOrganismFromXY(x - 1, y) == null || currentWorld.getOrganismFromXY(x - 1, y).getColor() != color || currentWorld.getOrganismFromXY(x + 1, y) == null || currentWorld.getOrganismFromXY(x + 1, y).getColor() != color) {
             direction breedDirection = randMoveDirection();
             if (breedDirection == direction.DOWN && y + 1 < currentWorld.getBoardSizeY() && y + 1 != collidingOrganism.getY()) {
                 if ((currentWorld.checkFieldXY(x, y + 1) && currentWorld.getOrganismFromXY(x, y + 1).getColor() != color && currentWorld.getOrganismFromXY(x, y + 1).getAge() > 0) || !currentWorld.checkFieldXY(x, y + 1)) {
@@ -107,7 +102,7 @@ abstract public class Animal extends Organism {
         }
     }
     public void collision(Organism collidingOrganism) {
-        if (getClass().equals(collidingOrganism.getClass())) {
+        if (type == collidingOrganism.getType()) {
             tryToBreed(collidingOrganism);
             return;
         }

@@ -5,6 +5,8 @@ public class Turtle extends Animal {
     public Turtle(int xPosition, int yPosition, World newWorld) {
         super(xPosition, yPosition, newWorld);
         color = Color.blue;
+        name = "Żółw";
+        type = organismType.TURTLE;
         strength = 2; //base Turtle strength
         initiative = 1; //base Turtle initiative
     }
@@ -38,6 +40,7 @@ public class Turtle extends Animal {
             else if (collidingAnimal.getMoveDirection() == direction.LEFT) {
                 collidingAnimal.setMoveDirection(direction.RIGHT);
             }
+            currentWorld.addEventInfo(name + " (" + x + ", " + y + ") odbił atak");
         }
         else {
             baseFight(collidingOrganism);
