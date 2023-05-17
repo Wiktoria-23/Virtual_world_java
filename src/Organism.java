@@ -81,7 +81,7 @@ abstract public class Organism {
     }
     public abstract void action();
     public void setDeadState(Organism collidingOrganism) {
-        String deathInfo = new String(name + "(" + x + ", " + y + ") został zabity przez " + collidingOrganism.getName());
+        String deathInfo = new String(name + " (" + x + ", " + y + ") został zabity przez " + collidingOrganism.getName());
         currentWorld.addEventInfo(deathInfo);
         alive = false;
     }

@@ -76,6 +76,9 @@ public class Controller {
     }
     public void save() {
         mainWindow.getFilenameInput();
+        if (filename == null) {
+            return;
+        }
         File file = new File(filename);
         if (!file.exists()) {
             try {

@@ -92,6 +92,7 @@ public class Screen {
         int componentWidth = 150;
         int componentHeight = 20;
         JDialog getFilename = new JDialog(mainFrame, "Podaj nazwę pliku", Dialog.ModalityType.APPLICATION_MODAL);
+        getFilename.setResizable(false);
         JTextField filenameField = new JTextField("Nazwa pliku");
         filenameField.setBounds((windowWidth - componentWidth)/2, componentHeight, componentWidth, componentHeight);
         getFilename.add(filenameField);
@@ -118,6 +119,7 @@ public class Screen {
     }
     public void showAddingOrganismMenu(final int xPosition, final int yPosition) {
         JDialog addingOrganismMenu = new JDialog(mainFrame, "Wybierz typ", Dialog.ModalityType.APPLICATION_MODAL);
+        addingOrganismMenu.setResizable(false);
         addingOrganismMenu.setSize(200, 300);
         addingOrganismMenu.setLayout(new GridLayout(11, 1));
         JButton antelopeChoice = new JButton("Antylopa");

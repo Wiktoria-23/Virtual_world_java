@@ -63,6 +63,7 @@ public class Human extends Animal {
     }
     public void setDeadState(Organism collidingOrganism) {
         if (!superpowerActive) {
+            currentWorld.addEventInfo(name + " (" + x + ", " + y + ") został zabity przez " + collidingOrganism.getName());
             alive = false;
         }
     }
