@@ -1,6 +1,6 @@
 import java.util.Random;
 abstract public class Plant extends Organism {
-    final int growChance = 40;
+    final private int growChance = 40;
     public Plant(int xPosition, int yPosition, World newWorld) {
         super(xPosition, yPosition, newWorld);
         initiative = 0; //base initiative

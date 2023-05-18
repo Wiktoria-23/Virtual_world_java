@@ -4,8 +4,8 @@ public class World {
     private int roundCounter;
     private int boardSizeX;
     private int boardSizeY;
-    ArrayList<String> allEventsInfo;
-    ArrayList<Organism> allOrganisms;
+    private ArrayList<String> allEventsInfo;
+    private ArrayList<Organism> allOrganisms;
     public World() {
         roundCounter = 0;
     }
@@ -52,7 +52,7 @@ public class World {
     }
     public int countOrganismsAmount() {
         float field = boardSizeX * boardSizeY;
-        int maxOccupied = (int)Math.ceil(field / 100 * 1); // setting maxOccupied field by organism type to 1% of whole field
+        int maxOccupied = (int)Math.ceil(field / 100 * 2); // setting maxOccupied field by organism type to 2% of whole field
         return maxOccupied + 1;
     }
     public ArrayList<String> getAllEventsInfo() {
@@ -71,7 +71,6 @@ public class World {
         }
         for (int i = allOrganisms.size() - 1; i >= 0; i--) {
             if (!allOrganisms.get(i).checkIfAlive()) {
-                Organism tmp = allOrganisms.get(i);
                 if (allOrganisms.get(i) instanceof Human) {
                     Human humanPointer = (Human)(allOrganisms.get(i));
                     if (!humanPointer.superpowerState()) {
@@ -127,12 +126,6 @@ public class World {
             }
         }
         return false;
-    }
-    public int getRoundCounter() {
-        return roundCounter;
-    }
-    public void incrementRoundCounter() {
-        roundCounter += 1;
     }
     public Human getHuman() {
         for (int i = 0; i < allOrganisms.size(); i++) {

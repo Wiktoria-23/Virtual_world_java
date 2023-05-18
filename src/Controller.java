@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -8,7 +7,7 @@ import java.util.Scanner;
 
 public class Controller {
     private Screen mainWindow;
-    private World world = new World();
+    private final World world = new World();
     private String filename;
     public Controller() {
         getBoardSize();
@@ -85,7 +84,7 @@ public class Controller {
                 file.createNewFile();
             }
             catch (IOException exception) {
-
+                System.out.println("Nie utworzono pliku poprawnie");
             }
         }
         try {
@@ -100,10 +99,9 @@ public class Controller {
                 writeToFile.write(Integer.toString(currentOrganism.getX()) + "\n");
                 writeToFile.write(Integer.toString(currentOrganism.getY()) + "\n");
                 writeToFile.write(Integer.toString(currentOrganism.getStrength()) + "\n");
-                if (currentOrganism instanceof Human) {
-                    Human human = (Human)currentOrganism;
+                if (currentOrganism instanceof Human human) {
                     writeToFile.write(human.getRoundCounter() + "\n");
-                    if (human.superpowerState() == true) {
+                    if (human.superpowerState()) {
                         writeToFile.write("1");
                     }
                     else {
@@ -115,7 +113,7 @@ public class Controller {
             writeToFile.close();
         }
         catch (IOException exception) {
-
+            System.out.println("Nie udało się zapisać do pliku");
         }
         mainWindow.getMainFrame().requestFocus();
     }
@@ -199,10 +197,9 @@ public class Controller {
                 }
             }
             catch (FileNotFoundException exception) {
-
+                System.out.println("Nie znaleziono pliku");
             }
         }
-        mainWindow.resetOrganismImages(world.getBoardSizeX(), world.getBoardSizeY());
         mainWindow.resetBoard(world.getBoardSizeY(), world.getBoardSizeX());
         mainWindow.updateLogs();
         mainWindow.updateMainFrame();

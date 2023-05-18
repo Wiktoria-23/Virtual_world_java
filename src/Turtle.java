@@ -18,8 +18,7 @@ public class Turtle extends Animal {
         }
     }
     public Organism createChild(int xPosition, int yPosition) {
-        Organism newTurtle = new Turtle(xPosition, yPosition, currentWorld);
-        return newTurtle;
+        return new Turtle(xPosition, yPosition, currentWorld);
     }
     public void collision(Organism collidingOrganism) {
         if (color == collidingOrganism.getColor()) {

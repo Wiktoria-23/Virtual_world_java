@@ -9,8 +9,7 @@ public class SosnowskyHogweed extends Plant {
         strength = 10; //base SosnowskyHogweed strength
     }
     public Organism createChild(int xPosition, int yPosition) {
-        Organism newSosnowskyHogweed = new SosnowskyHogweed(xPosition, yPosition, currentWorld);
-        return newSosnowskyHogweed;
+        return new SosnowskyHogweed(xPosition, yPosition, currentWorld);
     }
     public void action() {
         if (currentWorld.checkFieldXY(x - 1, y) && currentWorld.checkIfAnimal(x - 1, y)) {

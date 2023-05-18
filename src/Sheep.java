@@ -10,7 +10,6 @@ public class Sheep extends Animal {
         initiative = 4; //base Sheep initiative
     }
     public Organism createChild(int xPosition, int yPosition) {
-        Organism newSheep = new Sheep(xPosition, yPosition, currentWorld);
-        return newSheep;
+        return new Sheep(xPosition, yPosition, currentWorld);
     }
 }

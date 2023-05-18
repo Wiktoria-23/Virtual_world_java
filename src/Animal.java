@@ -1,4 +1,3 @@
-import java.util.Random;
 abstract public class Animal extends Organism {
     protected final int baseAnimalSpeed = 1;
     protected int speed = baseAnimalSpeed; //base animal speed
@@ -47,10 +46,7 @@ abstract public class Animal extends Organism {
         else if (newMoveDirection == direction.DOWN) {
             tmpY += speed;
         }
-        if (tmpX >= 0 && tmpX < currentWorld.getBoardSizeX() && tmpY >= 0 && tmpY < currentWorld.getBoardSizeY()) {
-            return true;
-        }
-        return false;
+        return tmpX >= 0 && tmpX < currentWorld.getBoardSizeX() && tmpY >= 0 && tmpY < currentWorld.getBoardSizeY();
     }
     public void action() {
         while (true) {
@@ -68,6 +64,7 @@ abstract public class Animal extends Organism {
             break;
         }
     }
+    abstract public Organism createChild(int x, int y);
     public direction getMoveDirection() {
         return moveDirection;
     }

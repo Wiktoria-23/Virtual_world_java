@@ -55,7 +55,7 @@ public class Human extends Animal {
         if (superpowerActive && collidingOrganism.getStrength() > strength) {
             direction moveDirection = randMoveDirection();
             setMoveDirection(moveDirection);
-            baseMovement();
+            action();
         }
         else {
             super.collision(collidingOrganism);
@@ -71,8 +71,10 @@ public class Human extends Animal {
         return superpowerActive;
     }
     public void activateSuperpower() {
-        roundCounter = 5;
-        superpowerActive = true;
+        if (canSuperpowerBeActivated()) {
+            roundCounter = 5;
+            superpowerActive = true;
+        }
     }
     public void setRoundCounter(int newRoundCounter) {
         roundCounter = newRoundCounter;

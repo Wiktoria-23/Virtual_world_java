@@ -12,8 +12,7 @@ public class Antelope extends Animal {
         initiative = 4; //base antelope initiative
     }
     public Organism createChild(int xPosition, int yPosition) {
-        Organism newAntelope = new Antelope(xPosition, yPosition, currentWorld);
-        return newAntelope;
+        return new Antelope(xPosition, yPosition, currentWorld);
     }
     public void setSpeed(int newSpeed) {
         speed = newSpeed;
@@ -43,7 +42,6 @@ public class Antelope extends Animal {
             }
         } else if (collidingOrganism.checkIfAlive() && collidingOrganism instanceof Antelope) {
             tryToBreed(collidingOrganism);
-            return;
         }
 
     }

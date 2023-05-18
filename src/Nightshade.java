@@ -9,8 +9,7 @@ public class Nightshade extends Plant {
         strength = 99; //base Nightshade strength
     }
     public Organism createChild(int xPosition, int yPosition) {
-        Organism newNightshade = new Nightshade(xPosition, yPosition, currentWorld);
-        return newNightshade;
+        return new Nightshade(xPosition, yPosition, currentWorld);
     }
     public void collision(Organism collidingOrganism) {
         setDeadState(collidingOrganism);

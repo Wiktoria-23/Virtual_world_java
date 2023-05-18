@@ -2,10 +2,6 @@ import java.util.Random;
 public class Coordinates {
     private int x;
     private int y;
-    Coordinates(int newX, int newY) {
-        x = newX;
-        y = newY;
-    }
     Coordinates(World currentWorld) {
         Random rand = new Random();
         int newX = rand.nextInt(currentWorld.getBoardSizeX());

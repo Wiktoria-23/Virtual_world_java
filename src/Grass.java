@@ -8,7 +8,6 @@ public class Grass extends Plant {
         color = Color.green;
     }
     public Organism createChild(int xPosition, int yPosition) {
-        Organism newGrass = new Grass(xPosition, yPosition, this.currentWorld);
-        return newGrass;
+        return new Grass(xPosition, yPosition, this.currentWorld);
     }
 }

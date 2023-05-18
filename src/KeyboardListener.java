@@ -2,8 +2,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyboardListener implements KeyListener {
-    private World world;
-    private Controller controller;
+    private final World world;
+    private final Controller controller;
     public KeyboardListener(Controller newController) {
         world = newController.getWorld();
         controller = newController;

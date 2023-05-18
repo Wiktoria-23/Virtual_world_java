@@ -7,8 +7,7 @@ public class Dandelion extends Plant {
         color = Color.yellow;
     }
     public Organism createChild(int xPosition, int yPosition) {
-        Organism newDandelion = new Dandelion(xPosition, yPosition, currentWorld);
-        return newDandelion;
+        return new Dandelion(xPosition, yPosition, currentWorld);
     }
     public void action() {
         for (int i = 0; i < 3; i++) {

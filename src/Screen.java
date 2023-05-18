@@ -5,15 +5,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.concurrent.Flow;
-
 public class Screen {
-    private Controller controller;
+    private final Controller controller;
     private final int windowWidth = 800;
     private final int windowHeight = 600;
-    private JPanel[][] organismsImages;
-    private JPanel board, mainPanel, logPanel, buttonPanel;
-    private JFrame mainFrame = new JFrame("Wirtualny świat");
+    private JPanel board;
+    private final JPanel mainPanel, logPanel;
+    private final JFrame mainFrame = new JFrame("Wirtualny świat");
     public Screen(int boardSizeX, int boardSizeY, Controller newController) {
         controller = newController;
         mainFrame.addKeyListener(new KeyboardListener(controller));
@@ -25,7 +23,7 @@ public class Screen {
         logPanel.setPreferredSize(new Dimension(350, windowHeight));
         JLabel newText = new JLabel("Stworzono wszystkie organizmy");
         logPanel.add(newText);
-        buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JButton turnButton = new JButton("Nowa tura");
         board = new JPanel(new GridLayout(boardSizeY, boardSizeX));
         turnButton.addActionListener(new ActionListener() {
@@ -49,16 +47,12 @@ public class Screen {
         buttonPanel.add(saveButton);
         buttonPanel.add(loadButton);
         buttonPanel.add(turnButton);
-        organismsImages = new JPanel[boardSizeY][boardSizeX];
         mainFrame.setSize(windowWidth, windowHeight);
         updateBoard(boardSizeX, boardSizeY);
         mainPanel.add(logPanel, BorderLayout.EAST);
         mainPanel.add(board, BorderLayout.CENTER);
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
         mainFrame.add(mainPanel);
-    }
-    public void resetOrganismImages(int boardX, int boardY) {
-        organismsImages = new JPanel[boardY][boardX];
     }
     public void updateLogs() {
         logPanel.removeAll();
@@ -267,7 +261,6 @@ public class Screen {
                         }
                     });
                 }
-                organismsImages[y][x] = panel;
                 board.add(panel);
             }
         }

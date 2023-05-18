@@ -31,7 +31,6 @@ abstract public class Organism {
     protected int age;
     protected boolean alive;
     protected World currentWorld;
-    protected direction moveDirection;
     public Organism(int xPosition, int yPosition, World newWorld) {
         x = xPosition;
         y =yPosition;
@@ -45,28 +44,27 @@ abstract public class Organism {
     public direction randMoveDirection() {
         Random rand = new Random();
         int number = (rand.nextInt(direction.values().length - 1));
-        direction moveDirection = direction.values()[number];
-        return moveDirection;
+        return direction.values()[number];
     }
     public abstract Organism createChild(int xPosition, int yPosition);
     public Organism getCollision(direction moveDirection) {
         Organism collidingOrganism = null;
-        if (moveDirection == moveDirection.UP) {
+        if (moveDirection == direction.UP) {
             if (currentWorld.checkFieldXY(x, y - 1)) {
                 collidingOrganism = currentWorld.getOrganismFromXY(x, y - 1);
             }
         }
-        else if (moveDirection == moveDirection.DOWN) {
+        else if (moveDirection == direction.DOWN) {
             if (currentWorld.checkFieldXY(x, y + 1)) {
                 collidingOrganism = currentWorld.getOrganismFromXY(x, y + 1);
             }
         }
-        else if (moveDirection == moveDirection.RIGHT) {
+        else if (moveDirection == direction.RIGHT) {
             if (currentWorld.checkFieldXY(x + 1, y)) {
                 collidingOrganism = currentWorld.getOrganismFromXY(x + 1, y);
             }
         }
-        else if (moveDirection == moveDirection.LEFT) {
+        else if (moveDirection == direction.LEFT) {
             if (currentWorld.checkFieldXY(x - 1, y)) {
                 collidingOrganism = currentWorld.getOrganismFromXY(x - 1, y);
             }
@@ -81,8 +79,7 @@ abstract public class Organism {
     }
     public abstract void action();
     public void setDeadState(Organism collidingOrganism) {
-        String deathInfo = new String(name + " (" + x + ", " + y + ") został zabity przez " + collidingOrganism.getName());
-        currentWorld.addEventInfo(deathInfo);
+        currentWorld.addEventInfo(name + " (" + x + ", " + y + ") został zabity przez " + collidingOrganism.getName());
         alive = false;
     }
     public boolean checkIfAlive() {

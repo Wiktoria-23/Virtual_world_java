@@ -10,8 +10,7 @@ public class Fox extends Animal {
         initiative = 7; //base fox initiative
     }
     public Organism createChild(int xPosition, int yPosition) {
-        Organism newFox = new Fox(xPosition, yPosition, currentWorld);
-        return newFox;
+        return new Fox(xPosition, yPosition, currentWorld);
     }
     public boolean checkField(direction moveDirection) {
         if (moveDirection == direction.LEFT) {
