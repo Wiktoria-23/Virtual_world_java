@@ -22,7 +22,12 @@ public class Antelope extends Animal {
             Random rand = new Random();
             int survive = rand.nextInt(2);
             if (survive == 0) {
-                if (currentWorld.checkFieldXY(x, y - 1) || currentWorld.checkFieldXY(x, y + 1) || currentWorld.checkFieldXY(x - 1, y) || currentWorld.checkFieldXY(x + 1, y)) {
+                if (
+                        currentWorld.checkFieldXY(x, y - 1)
+                        || currentWorld.checkFieldXY(x, y + 1)
+                        || currentWorld.checkFieldXY(x - 1, y)
+                        || currentWorld.checkFieldXY(x + 1, y)
+                ) {
                     setSpeed(this.baseAnimalSpeed);
                     currentWorld.addEventInfo(name + " (" + x + ", " + y + ") ucieka od walki");
                     while (true) {

@@ -63,10 +63,19 @@ public class Fox extends Animal {
         if (x < 0 || x >= currentWorld.getBoardSizeX() || y < 0 || y >= currentWorld.getBoardSizeY()) {
             return false;
         }
-        if ((currentWorld.checkFieldXY(x - speed, y) && currentWorld.getOrganismFromXY(x - speed, y).getStrength() < strength) || (currentWorld.checkFieldXY(x + speed, y) && currentWorld.getOrganismFromXY(x + speed, y).getStrength() < strength) || (currentWorld.checkFieldXY(x, y - speed) && currentWorld.getOrganismFromXY(x, y - speed).getStrength() < strength) || (currentWorld.checkFieldXY(x, y + speed) && currentWorld.getOrganismFromXY(x, y + speed).getStrength() < strength)) {
+        if (
+                (currentWorld.checkFieldXY(x - speed, y) && currentWorld.getOrganismFromXY(x - speed, y).getStrength() < strength)
+                || (currentWorld.checkFieldXY(x + speed, y) && currentWorld.getOrganismFromXY(x + speed, y).getStrength() < strength)
+                || (currentWorld.checkFieldXY(x, y - speed) && currentWorld.getOrganismFromXY(x, y - speed).getStrength() < strength)
+                || (currentWorld.checkFieldXY(x, y + speed) && currentWorld.getOrganismFromXY(x, y + speed).getStrength() < strength)) {
             return true;
         }
-        else if ((!currentWorld.checkFieldXY(x - speed, y) && x - 1 >= 0) || (!currentWorld.checkFieldXY(x + speed, y) && x + speed < currentWorld.getBoardSizeX()) || (!currentWorld.checkFieldXY(x, y - speed) && y - speed >= 0) || (!currentWorld.checkFieldXY(x, y + speed) && y + speed < currentWorld.getBoardSizeX())) {
+        else if (
+                (!currentWorld.checkFieldXY(x - speed, y) && x - 1 >= 0)
+                || (!currentWorld.checkFieldXY(x + speed, y) && x + speed < currentWorld.getBoardSizeX())
+                || (!currentWorld.checkFieldXY(x, y - speed) && y - speed >= 0)
+                || (!currentWorld.checkFieldXY(x, y + speed) && y + speed < currentWorld.getBoardSizeX())
+        ) {
             return true;
         }
         return false;

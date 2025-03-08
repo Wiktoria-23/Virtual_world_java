@@ -52,7 +52,8 @@ public class World {
     }
     public int countOrganismsAmount() {
         float field = boardSizeX * boardSizeY;
-        int maxOccupied = (int)Math.ceil(field / 100 * 2); // setting maxOccupied field by organism type to 2% of whole field
+        // setting maxOccupied field by organism type to 2% of whole field
+        int maxOccupied = (int)Math.ceil(field / 100 * 2);
         return maxOccupied + 1;
     }
     public ArrayList<String> getAllEventsInfo() {
@@ -149,12 +150,16 @@ public class World {
             }
             int highestAge = 0;
             for (int l = i; l < allOrganisms.size(); l++) {
-                if (allOrganisms.get(l).getInitiative() == highestInitiative && allOrganisms.get(l).getAge() > highestAge) {
+                if (
+                        allOrganisms.get(l).getInitiative() == highestInitiative
+                        && allOrganisms.get(l).getAge() > highestAge
+                ) {
                     highestAge = allOrganisms.get(l).getAge();
                 }
             }
             int m = i;
-            while (allOrganisms.get(m).getInitiative() != highestInitiative && allOrganisms.get(m).getAge() == highestAge) {
+            while (allOrganisms.get(m).getInitiative() != highestInitiative
+                    && allOrganisms.get(m).getAge() == highestAge) {
                 m++;
             }
             allOrganisms.add(i, allOrganisms.get(m));

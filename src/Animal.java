@@ -76,23 +76,47 @@ abstract public class Animal extends Organism {
     public void tryToBreed(Organism collidingOrganism) {
         if (currentWorld.getOrganismFromXY(x, y - 1) == null || (currentWorld.getOrganismFromXY(x, y - 1).getColor()) != color || currentWorld.getOrganismFromXY(x, y + 1) == null || currentWorld.getOrganismFromXY(x, y + 1).getColor() != color || currentWorld.getOrganismFromXY(x - 1, y) == null || currentWorld.getOrganismFromXY(x - 1, y).getColor() != color || currentWorld.getOrganismFromXY(x + 1, y) == null || currentWorld.getOrganismFromXY(x + 1, y).getColor() != color) {
             direction breedDirection = randMoveDirection();
-            if (breedDirection == direction.DOWN && y + 1 < currentWorld.getBoardSizeY() && y + 1 != collidingOrganism.getY()) {
-                if ((currentWorld.checkFieldXY(x, y + 1) && currentWorld.getOrganismFromXY(x, y + 1).getColor() != color && currentWorld.getOrganismFromXY(x, y + 1).getAge() > 0) || !currentWorld.checkFieldXY(x, y + 1)) {
+            if (
+                    breedDirection == direction.DOWN && y + 1 < currentWorld.getBoardSizeY()
+                            && y + 1 != collidingOrganism.getY()
+            ) {
+                if (
+                        (currentWorld.checkFieldXY(x, y + 1)
+                        && currentWorld.getOrganismFromXY(x, y + 1).getColor() != color
+                        && currentWorld.getOrganismFromXY(x, y + 1).getAge() > 0)
+                        || !currentWorld.checkFieldXY(x, y + 1)) {
                     breed(x, y + 1);
                 }
             }
             else if (breedDirection == direction.UP && y - 1 >= 0 && y - 1 != collidingOrganism.getY()) {
-                if ((currentWorld.checkFieldXY(x, y - 1) && currentWorld.getOrganismFromXY(x, y - 1).getColor() != color && currentWorld.getOrganismFromXY(x, y - 1).getAge() > 0) || !currentWorld.checkFieldXY(x, y - 1)) {
+                if (
+                        (currentWorld.checkFieldXY(x, y - 1)
+                        && currentWorld.getOrganismFromXY(x, y - 1).getColor() != color
+                        && currentWorld.getOrganismFromXY(x, y - 1).getAge() > 0)
+                        || !currentWorld.checkFieldXY(x, y - 1)) {
                     breed(x, y - 1);
                 }
             }
-            else if (breedDirection == direction.RIGHT && x + 1 < currentWorld.getBoardSizeX() && x + 1 != collidingOrganism.getX()) {
-                if ((currentWorld.checkFieldXY(x + 1, y) && currentWorld.getOrganismFromXY(x + 1, y).getColor() != color && currentWorld.getOrganismFromXY(x + 1, y).getAge() > 0) || !currentWorld.checkFieldXY(x + 1, y)) {
+            else if (
+                    breedDirection == direction.RIGHT
+                    && x + 1 < currentWorld.getBoardSizeX() && x + 1 != collidingOrganism.getX()
+            ) {
+                if (
+                    (currentWorld.checkFieldXY(x + 1, y)
+                    && currentWorld.getOrganismFromXY(x + 1, y).getColor() != color
+                    && currentWorld.getOrganismFromXY(x + 1, y).getAge() > 0)
+                    || !currentWorld.checkFieldXY(x + 1, y)
+                ) {
                     breed(x + 1, y);
                 }
             }
             else if (breedDirection == direction.LEFT && x - 1 >= 0 && x - 1 != collidingOrganism.getX()) {
-                if ((currentWorld.checkFieldXY(x - 1, y) && currentWorld.getOrganismFromXY(x - 1, y).getColor() != color && currentWorld.getOrganismFromXY(x - 1, y).getAge() > 0) || !currentWorld.checkFieldXY(x - 1, y)) {
+                if (
+                    (currentWorld.checkFieldXY(x - 1, y)
+                    && currentWorld.getOrganismFromXY(x - 1, y).getColor() != color
+                    && currentWorld.getOrganismFromXY(x - 1, y).getAge() > 0)
+                    || !currentWorld.checkFieldXY(x - 1, y)
+                ) {
                     breed(x - 1, y);
                 }
             }

@@ -25,7 +25,10 @@ public class Turtle extends Animal {
             tryToBreed(collidingOrganism);
             return;
         }
-        if (collidingOrganism.getStrength() < 5 && currentWorld.checkIfAnimal(collidingOrganism.getX(), collidingOrganism.getY())) {
+        if (
+                collidingOrganism.getStrength() < 5
+                        && currentWorld.checkIfAnimal(collidingOrganism.getX(), collidingOrganism.getY())
+        ) {
             Animal collidingAnimal = (Animal)collidingOrganism;
             if (collidingAnimal.getMoveDirection() == direction.UP) {
                 collidingAnimal.setMoveDirection(direction.DOWN);
