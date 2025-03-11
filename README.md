@@ -5,5 +5,5 @@
 
 ## Details
 <p align="justify">
-  Project is implemented in Java with use of Swing library. Each organism type is represented on board by different square color. Information about events during each turn is displayed next to the board. User can save and load the progress of simulation from file. Moreover, player can add new organism at any time to the board by clicking free place on the board.
+  The project is implemented in Java using of Swing library. Each organism type is represented on board by different square color. Events occuring during each turn are displayed next to the board. The user can save and load the simulation progress from a file. Additionaly, the player can add new organisms to the board at any time by clicking on a free space on the board.
 </p>
